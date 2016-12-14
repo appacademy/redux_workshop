@@ -69,11 +69,11 @@ We'll write more action creators later. Let's move on to our reducer!
 
 ### Reducers
 
-#### `todosReducer`
+#### `TodosReducer`
 
 Redux reducers manage the shape of our application state. Here, we'll create a reducer that is specifically responsible for the `state.todos` piece of our state.
 
-+ Create a file, `frontend/reducers/todos_reducer.js` that exports a reducing function `todosReducer`.
++ Create a file, `frontend/reducers/todos_reducer.js` that exports a reducing function `TodosReducer`.
 
 A Redux reducer accepts two arguments:
   + `state` - the previous application state.
@@ -86,10 +86,10 @@ Remember that reducers should:
 
 **N.B.** the reducer must never mutate the previous state. Instead it should return a brand new state object with the necessary changes."
 
-Let's start by just setting up our `todosReducer` to return its default state - an empty object with no todos:
+Let's start by just setting up our `TodosReducer` to return its default state - an empty object with no todos:
 
 ```js
-const todosReducer = (state = [], action) => {
+const TodosReducer = (state = [], action) => {
   switch(action.type) {
     default:
       return state;
@@ -100,7 +100,7 @@ const todosReducer = (state = [], action) => {
 Next, let's tell our reducer how to produce the new state when it receives a "RECEIVE_TODO" action.
 
 ```js
-const todosReducer = (state = [], action) => {
+const TodosReducer = (state = [], action) => {
   switch(action.type) {
     case "RECEIVE_TODO":
       return state.concat(action.todo);
@@ -113,7 +113,7 @@ const todosReducer = (state = [], action) => {
 As usual, `export default`.
 
 ```js
-export default todosReducer;
+export default TodosReducer;
 ```
 
 Here, we're telling the reducer that when we receive a new todo, add it to the end of the array of todos. Note that **we never mutate the state object.** If we had said `state.push(action.todo)`, we'd be in trouble.
@@ -126,27 +126,27 @@ A Redux `Store` holds a reference to an application state. The `Store` handles u
 
 + Create a new file, `frontend/store/store.js`.
 + Import `createStore` and `combineReducers` from the `redux` library.
-+ Import your `todosReducer`.
++ Import your `TodosReducer`.
 
 ```js
 import { createStore, combineReducers } from 'redux';
-import todosReducer from '../reducers/todos_reducer';
+import TodosReducer from '../reducers/todos_reducer';
 ```
 
-Next, let's use the `combineReducers` function to generate a `rootReducer`
+Next, let's use the `combineReducers` function to generate a `RootReducer`
 
 ```js
-const rootReducer = combineReducers({
-  todos: todosReducer
+const RootReducer = combineReducers({
+  todos: TodosReducer
 });
 ```
 
-While the purpose `rootReducer` may not be obvious right now, it will later allow us to connect several domain-specific reducers to our store by combining them into a single `rootReducer`;
+While the purpose `RootReducer` may not be obvious right now, it will later allow us to connect several domain-specific reducers to our store by combining them into a single `RootReducer`;
 
-Finally, let's create and export our store! Note that the `createStore` function accepts the `rootReducer` as an argument.
+Finally, let's create and export our store! Note that the `createStore` function accepts the `RootReducer` as an argument.
 
 ```js
-const Store = createStore(rootReducer);
+const Store = createStore(RootReducer);
 export default Store;
 ```
 

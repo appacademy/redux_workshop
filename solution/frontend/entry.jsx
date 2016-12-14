@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import Store from './store/store';
+import { requestAllTodos } from './actions/todos_actions';
 
 import TodoListContainer from './components/todo_list_container';
 import NewTodoFormContainer from './components/new_todo_form_container';
@@ -21,4 +22,5 @@ const Root = () => (
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById('root');
   ReactDOM.render(<Root />, root);
+  Store.dispatch(requestAllTodos());
 });

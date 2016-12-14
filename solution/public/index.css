@@ -1,11 +1,31 @@
+body {
+  font-size: 22px;
+}
+
 .done {
   text-decoration: line-through;
 }
 
 li {
   cursor: pointer;
+  position: relative;
 }
 
 li:hover {
+  font-weight: bold;
+}
+
+li span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: red;
+  font-family: sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+li span:hover {
   font-weight: bold;
 }

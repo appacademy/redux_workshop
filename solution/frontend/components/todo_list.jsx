@@ -1,16 +1,22 @@
 import React from 'react';
 
-const TodoList = ({todos, toggleTodo = function(){}}) => {
+const TodoList = ({todos, toggleTodo = function(){}, deleteTodo = function(){} }) => {
 
   const _getClassName = done => (
     done ? "done" : ""
   );
 
-  const _generateLis = () => (
+  const _handleX = id => e => {
+    e.stopPropagation();
+    deleteTodo(id);
+  };
+
+  const _generateList = () => (
     todos.map( todo => (
       <li key={todo.id}
           className={_getClassName(todo.done)}
           onClick={() => toggleTodo(todo.id)}>
+          <span onClick={_handleX(todo.id)}>X</span>
           {todo.body}
       </li>
     ))
@@ -18,7 +24,7 @@ const TodoList = ({todos, toggleTodo = function(){}}) => {
 
   return (
     <ul id="todoList">
-      {_generateLis()}
+      {_generateList()}
     </ul>
   );
 }

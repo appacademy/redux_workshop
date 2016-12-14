@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import NewTodoForm from './new_todo_form';
-import { receiveTodo } from '../actions/todo_actions';
+import { receiveTodo } from '../actions/todos_actions';
 
 const mapDispatchToProps = dispatch => ({
   handleSubmit: todo => dispatch(receiveTodo(todo))

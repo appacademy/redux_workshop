@@ -18,7 +18,7 @@ When                | What
 
 Let's write some code!
 
-You will build an app that lets people create and manage a todo list. Users of your app will be able to add items to their todo list and mark items as "done".
+You will build an app that lets people create and manage a todo list. Users of your app will be able to add items to their todo list, mark items as "done", and save their todo lists for later.
 
 ### Getting Started
 
@@ -29,3 +29,8 @@ You will build an app that lets people create and manage a todo list. Users of y
 ### Scripts
   0. `npm run serve` --> hosts your project on localhost:8080
   0. `npm run pack` --> starts the module bundler
+
+### Parts
+
+In [Part 1][part_1.md], we'll build the basic redux structure to manage our todo list application.
+In [Part 2][part_2.md], we'll add redux middleware to handle saving our todo list!
