@@ -1,0 +1,11 @@
+.done {
+  text-decoration: line-through;
+}
+
+li {
+  cursor: pointer;
+}
+
+li:hover {
+  font-weight: bold;
+}
