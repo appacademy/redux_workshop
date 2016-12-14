@@ -22,7 +22,7 @@ You will build an app that lets people create and manage a todo list. Users of y
 
 ### Getting Started
 
-  0. Download the zip file located [here][./skeleton.zip]
+  0. Download the zip file located [here](skeleton.zip)
   0. unzip and navigate to the directory
   0. `npm install`
 
@@ -32,5 +32,5 @@ You will build an app that lets people create and manage a todo list. Users of y
 
 ### Parts
 
-In [Part 1][./part_1.md], we'll build the basic redux structure to manage our todo list application.
-In [Part 2][./part_2.md], we'll add redux middleware to handle saving our todo list!
+In [Part 1](part_1.md), we'll build the basic redux structure to manage our todo list application.
+In [Part 2](part_2.md), we'll add redux middleware to handle saving our todo list!
