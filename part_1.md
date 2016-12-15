@@ -26,17 +26,17 @@ Here, each todo is represented by an object that may look like this:
 
 ### Action Creators
 
-Let's write a couple action creators, these are functions that will create the Redux `actions` that will later be used to update our application state.
+Let's write a couple of action creators. These are functions that will create the Redux `actions` that will later be used to update our application state.
 
 Remember that:
   * Redux actions are plain-old javascript objects that have a `type` property.
   * Action creators don't directly interact with reducers or the `store`, **they simply return action objects.**
 
-* Create a file `frontend/actions/todo_actions.js` that will house our action creators.
-
 #### `receiveTodo`
 
-Our first action creator will be responsible for creating a todo object, nested inside an action. It might look something like this:
+  * Create a file `frontend/actions/todo_actions.js` that will house our action creators.
+
+Our first action creator will be responsible for creating the action that updates our state with new todo objects. It might look something like this:
 
 ```js
 function receiveTodo(todo) {
@@ -80,13 +80,13 @@ A Redux reducer accepts two arguments:
   + `action` - the action object being dispatched.
 
 Remember that reducers should:
-  + Return the initial state if the state argument is undefined;
-  + Return the `state` if the reducer doesn't care about the action;
-  + Return a new state object if the reducer cares about the `action`
+  + Return the initial state if the state argument is undefined.
+  + Return the current `state` if the reducer doesn't care about the action.
+  + Return a new state object if the reducer cares about the `action`.
 
-**N.B.** the reducer must never mutate the previous state. Instead it should return a brand new state object with the necessary changes."
+**N.B.** the reducer must never mutate the previous state. Instead it should return a brand new state object with the necessary changes.
 
-Let's start by just setting up our `TodosReducer` to return its default state - an empty object with no todos:
+Let's start by just setting up our `TodosReducer` to return its default state - an empty array with no todos:
 
 ```js
 const TodosReducer = (state = [], action) => {
@@ -141,9 +141,9 @@ const RootReducer = combineReducers({
 });
 ```
 
-While the purpose `RootReducer` may not be obvious right now, it will later allow us to connect several domain-specific reducers to our store by combining them into a single `RootReducer`;
+While the purpose of the `RootReducer` may not be obvious right now, it will later allow us to connect several domain-specific reducers to our store by combining them into a single `RootReducer`.
 
-Finally, let's create and export our store! Note that the `createStore` function accepts the `RootReducer` as an argument.
+Finally, let's create and export our `Store`! Note that the `createStore` function accepts the `RootReducer` as an argument.
 
 ```js
 const Store = createStore(RootReducer);
@@ -181,7 +181,7 @@ Try typing `Store.getState()`, you should see our default application state retu
 Next, let's create and dispatch an action. In the console type:
 
 ```js
-let action = receiveTodo("learn redux");
+action = receiveTodo("learn redux");
 Store.dispatch(action);
 Store.getState();
 ```
@@ -194,7 +194,7 @@ You should see:
 }
 ```
 
-Try creating and dispatching more actions! You can always refresh the page to reset. Also keep in mind that we're just populating our state with strings to test, but later we'll wrap our todos in objects, as discussed at the top of this document.
+Try creating and dispatching more actions! You can always refresh the page to reset. Also keep in mind that we're just populating our state with strings to test, but later **we'll wrap our todos in objects,** as discussed at beginning of Part 1.
 
 ---
 ## Phase 2: React-Redux
@@ -203,7 +203,7 @@ Try creating and dispatching more actions! You can always refresh the page to re
 
 Now comes the fun part - let's connect some react views to our redux store! We've already given you a component to use, the `TodoList`.
 
-This component accepts a prop called `todos` and renders an <li> for each todo! The `TodoList` component expects the `todos` prop to be an array of todo objects.
+This component accepts a prop called `todos` and renders an `<li>` for each todo! The `TodoList` component expects the `todos` prop to be an array of todo objects.
 
 Let's `connect` this component to our redux `Store`. We'll use a container to do this.
 
