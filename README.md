@@ -28,7 +28,7 @@ You will build an app that lets people create and manage a todo list. Users of y
 
 ### Scripts
   0. `npm run serve` --> hosts your project on localhost:8080
-  0. `npm run pack` --> starts the module bundler
+  0. `npm run bundle` --> starts the module bundler
 
 ### Parts
 

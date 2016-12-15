@@ -4,17 +4,17 @@
 
 ### Basic Structure
 
-We use redux middleware whenever a dispatch is supposed to do something *other than* or *in addition to* updating the application state. You might need a middleware to:
+We use redux middleware whenever a dispatch is supposed to do something *other than* or *in addition to* updating the application state. You might need middleware to:
   * Talk to an external API
   * Manage a session
   * Change browser permissions
-  * Save data to localStorage
+  * Save data to `localStorage`
 
-In this phase, we'll add a layer of middleware to our Redux `Store`. This middleware will be responsible for saving our todo list so that it persists between sessions.
+In this phase, we'll add a layer of middleware to our Redux `Store`. This middleware will be responsible for saving our todo list so that it persists between visits.
 
-We'll be using the `localStorage` browser API to accomplish this task (for simplicity's sake), but this same pattern applies when making calls to external APIs.
+We'll be using the `localStorage` browser API to accomplish this task (for simplicity's sake), but this same pattern applies when making calls to external APIs as well.
 
-Redux middleware uses a currying pattern to link the middleware and provide each with access to:
+Redux middleware uses a currying pattern to link all the middlewares in the chain and provide each with access to:
   * The `Store`
   * The next middleware in the chain
   * The current action being dispatched
@@ -54,7 +54,7 @@ In this section we're going to use a `localStorage` utility called `LocalStorage
 
 ### TodosMiddleware
 
-  * Create a new file, `frontend/middleware/todos_middleware`
+  * Create a new file, `frontend/middleware/todos_middleware.js`
   * Start with this structure:
 
 ```js
@@ -84,7 +84,7 @@ const TodosMiddleware = store => next => action => {
 Remember that **middleware receives the dispatch before the store**. We have to accomplish two tasks here:
 
   * Save the todo to `localStorage`
-  * Pass the action on to the Store once we're done
+  * Pass the action on to the `Store` once we're done
 
 ```js
 const TodosMiddleware = store => next => action => {
@@ -97,7 +97,7 @@ const TodosMiddleware = store => next => action => {
 }
 ```
 
-Finally, the `TodosMiddleware`'s default behavior -- if it doesn't care about the action being dispatched -- should be to just pass the action along to the next middleware in the chain.
+Finally, the `TodosMiddleware`'s default behavior -- if it doesn't care about the action being dispatched -- should be to pass the action along to the next middleware in the chain.
 
 ```js
 const TodosMiddleware = store => next => action => {
@@ -119,10 +119,15 @@ The last step here is to tell our `Store` to use our `TodosMiddleware`! in `stor
   * Import `applyMiddleware` from `redux`
   * Import your `TodosMiddleware`
   * Use `applyMiddleware` to create a `MasterMiddleware`
-
+  * Pass your `MasterMiddleware` as the second argument to `createStore`
 
 ```js
+const MasterMiddleware = applyMiddleware(TodosMiddleware);
 
+const Store = createStore(
+  RootReducer,
+  MasterMiddleware
+);
 ```
 
 #### Test it
