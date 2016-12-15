@@ -136,7 +136,7 @@ Try reloading your app. Visually, everything should look the same. But try runni
 
 ### Phase 2: Loading All Todos
 
-As you've probably notices, we're saving our todos to `localStorage` just fine, but when we refresh the page all our todos disappear! We need to tell our app to retrieve all our todos once the page loads.
+As you've probably noticed, we're saving our todos to `localStorage` just fine, but when we refresh the page all of our todos disappear! We need to tell our app to retrieve all of our todos once the page loads.
 
 ### Action Creators
 
@@ -148,7 +148,7 @@ Build two new action creators, `requestAllTodos` and `receiveAllTodos`. `request
 }
 ```
 
-While `receiveAllTodos` should produce an object that looks like this:
+While `receiveAllTodos` should accept an array of todos as an argument and produce an object that looks like this:
 
 ```js
 {
@@ -159,7 +159,7 @@ While `receiveAllTodos` should produce an object that looks like this:
 
 ### Entry
 
-In our entry point, we're going to dispatch a 'REQUEST_TODOS' action when the page loads.
+In our entry point, we're going to dispatch a 'REQUEST_All_TODOS' action when the page loads.
 
   * Import `requestAllTodos`
   * Refactor your document-ready callback to look like this:
@@ -189,7 +189,7 @@ case "REQUEST_ALL_TODOS":
 
 ### `TodosReducer`
 
-The last step here is to teach our `TodosReducer` how to handle the "RECEIVE_ALL_TODOS" action. This should be a fairly straightforward situation, all we need to do is return the array of todos attached to the object!
+The last step here is to teach our `TodosReducer` how to handle the "RECEIVE_ALL_TODOS" action. This should be a fairly straightforward situation - all we need to do is return the array of todos attached to the action object!
 
 ```js
 case "RECEIVE_ALL_TODOS":
@@ -200,7 +200,7 @@ case "RECEIVE_ALL_TODOS":
 
 Your todos should now last forever! You can create todos, refresh, and see them persisted.
 
-## Phase 3: Bonus - Deleting Todos
+## Phase 3: Deleting Todos
 
 As you've probably noticed, our todo list items have a small "x" on them. When clicked, this event triggers the "deleteTodo" prop passed to the `TodoList` component.
 
