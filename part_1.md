@@ -226,7 +226,7 @@ const mapStateToProps = state => ({
 });
 ```
 
-Finally, let's create our container component by the `connect` function.
+Finally, let's create our container component by using the `connect` function.
 
 ```js
 const TodoListContainer = connect(
@@ -244,7 +244,7 @@ export default TodoListContainer;
 
 ### The entry file
 
-Let's tell the browser to render our component! Make you entry file look like this:
+Next, let's tell the browser to render our component! Make your entry file look like this:
 
 ```js
 import React from 'react';
@@ -308,7 +308,7 @@ Let's start by `connect`ing this component to our `Store`.
 
 Our `NewTodoForm` doesn't need any information from the state in order to do it's job. The only thing our `NewTodoForm` needs from the container, is a function that tells it how to submit a todo. We know that **when we submit a todo, we need to dispatch a "RECEIVE_TODO" action**.
 
-`react-redux` provides us with this lovely helper: `mapDispatchToProps`. We're going to give our `NewTodoForm` a function prop that, when invoked, triggers a dispatch.
+`react-redux` provides us with this lovely helper: `mapDispatchToProps`. We're going to give our `NewTodoForm` a `handleSubmit` prop that, when invoked, triggers a dispatch.
 
 The `mapDispatchToProps` function accepts the `Store`'s dispatch method as an argument and returns the props that are to be passed to the presentational component.
 
@@ -317,8 +317,6 @@ const mapDispatchToProps = dispatch => ({
   handleSubmit: todo => dispatch(receiveTodo(todo))
 });
 ```
-
-Again, we're giving `NewTodoForm` a prop called 'handleSubmit', a function. When invoked, 'handleSubmit' will trigger a dispatch.
 
 Note that the `mapDispatchToProps` function is the second argument that `connect` accepts. Since we don't have a `mapStateToProps` function, the first arguent will be `null`.
 
@@ -370,7 +368,7 @@ Your action-creator should look something like this:
 const toggleTodo = id => ({
   type: "TOGGLE_TODO",
   id
-})
+});
 ```
 
 ### `TodoReducer`
@@ -392,7 +390,7 @@ case "TOGGLE_TODO":
 
 ### TodoListContainer
 
-Finally, our `TodoListContainer` needs a `mapDispatchToProps` function. Our `ToDoList` component is setup to accept a `toggleTodo` prop. This function is invoked whenever we click a todo item, and the function is passed the `id` of the item clicked.
+Finally, our `TodoListContainer` needs a `mapDispatchToProps` function. Our `TodoList` component is setup to accept a `toggleTodo` prop. This function is invoked whenever we click a todo item, and the function is passed the `id` of the item clicked.
 
 ```js
 const mapDispatchToProps = dispatch => ({
